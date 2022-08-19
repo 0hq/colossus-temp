@@ -1,11 +1,21 @@
-import type { NextPage } from "next";
 import LogoGroup from "../../public/other/LogoGroup.svg";
 import Image from "next/image";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
+import { NextPageWithAuth } from "./_app";
+import { useRouter } from "next/router";
 
-const SignIn: NextPage = () => {
+const SignIn: NextPageWithAuth = () => {
   const [email, setEmail] = useState("");
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (session?.user) {
+    router.push("/memo");
+    return null;
+  }
+
+  if (status === "loading") return <></>;
 
   return (
     <main>
@@ -28,7 +38,7 @@ const SignIn: NextPage = () => {
               <button
                 className="bold flex h-9 w-40 cursor-pointer items-center justify-center rounded-md bg-[#5f4bdd] px-2 font-button text-sm font-bold text-black"
                 onClick={() => {
-                  signIn("email", { email: email, callbackUrl: "/" });
+                  signIn("email", { email: email, callbackUrl: "/memo" });
                 }}
               >
                 Send login link
