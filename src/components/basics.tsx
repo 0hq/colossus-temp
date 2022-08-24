@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Arrow from "../../public/other/arrow.svg";
+import LogoGroup from "../../public/other/LogoGroup.svg";
 
 export function Main({ children }: { children: React.ReactNode }) {
   return (
@@ -8,6 +9,24 @@ export function Main({ children }: { children: React.ReactNode }) {
       <div className="mx-auto mt-4 flex min-h-[90vh] max-w-custom flex-col gap-y-6">{children}</div>
       <Footer />
     </main>
+  );
+}
+
+export function Header({ link, showbackground = true, button }: { link: string; showbackground?: boolean; button: string }): React.ReactElement {
+  return (
+    <>
+      <div className="flex justify-between pl-1 pt-1">
+        <Link href="/">
+          <Image src={LogoGroup} className="cursor-pointer" height={30} width={180} alt="The human colossus logo" />
+        </Link>
+        <Hrline />
+        <a href={link}>
+          <div className="rounded-md px-3 pt-1 pb-1 font-button text-sm font-semibold" style={{ backgroundColor: showbackground ? "#191933" : "transparent" }}>
+            {button}
+          </div>
+        </a>
+      </div>
+    </>
   );
 }
 
@@ -23,6 +42,10 @@ export function Footer() {
     </div>
   );
 }
+
+export const Hrline = () => {
+  return <hr className="my-2.5 border-0.1 border-solid border-[#2D304F]" />;
+};
 
 export function Container({ children, title, infotext }: { title: string; infotext?: string; children: React.ReactNode }) {
   return (
