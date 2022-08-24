@@ -63,43 +63,6 @@ export const Header: React.FC<{
   );
 };
 
-// export function Header({
-//   link,
-//   showbackground = true,
-//   button,
-// }: {
-//   link: string;
-//   showbackground?: boolean;
-//   button: string;
-// }): React.ReactElement {
-//   return (
-//     <>
-//       <div className="my-5 flex justify-between pl-1 pt-1">
-//         <Link href="/">
-//           <Image
-//             src={LogoGroup}
-//             className="cursor-pointer"
-//             height={30}
-//             width={180}
-//             alt="The human colossus logo"
-//           />
-//         </Link>
-//         <Hrline />
-//         <a href={link}>
-//           <div
-//             className="rounded-md px-3 pt-1 pb-1 font-button text-sm font-semibold"
-//             style={{
-//               backgroundColor: showbackground ? "#191933" : "transparent",
-//             }}
-//           >
-//             {button}
-//           </div>
-//         </a>
-//       </div>
-//     </>
-//   );
-// }
-
 export function Footer() {
   return (
     <div className="mx-auto mt-8 h-12 max-w-[600px]">
