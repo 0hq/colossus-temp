@@ -104,7 +104,8 @@ export const Container: React.FC<{
                   {link}
                 </a>
               </Link>
-              <Image src={Arrow} width="13px" alt="" />
+              <Image src={Arrow} width="13px" alt="" />{" "}
+              {/* TODO: Add alt tags for all images */}
             </div>
           )}
         </div>
