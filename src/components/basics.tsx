@@ -3,7 +3,7 @@ import Link from "next/link";
 import Arrow from "../../public/other/arrow.svg";
 import LogoGroup from "../../public/other/LogoGroup.svg";
 import RedUpvote from "../../public/icons/RedUpvote.svg";
-import React, { Children } from "react";
+import React from "react";
 import classNames from "classnames";
 
 export function Main({ children }: { children: React.ReactNode }) {
@@ -74,22 +74,35 @@ export const Footer: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
-export const Hrline = () => {
+export const Hrline: React.FC = () => {
   return <hr className="my-2.5 border-0.1 border-solid border-[#2D304F]" />;
 };
 
-export function Container({ children, title, infotext }: { title: string; infotext?: string; children: React.ReactNode }) {
+export const Container: React.FC<{
+  title: string;
+  link?: string;
+  linkHref?: string;
+  children: JSX.Element;
+}> = ({ children, title, link, linkHref = "/sign-in" }) => {
   return (
     <Box>
       <div className="px-4 pb-4 pt-1.5">
         <div className="mb-[10px] flex items-center">
-          <h1 className="z-10 w-full bg-[#00001c] pt-1 font-semibold">{title}</h1>
-          {infotext && (
+          <h1 className="z-10 w-full bg-[#00001c] pt-1 font-semibold">
+            {title}
+          </h1>
+          {link && (
             <div className="flex gap-x-1">
-              <Link href="/sign-in">
-                <a className="w-36 text-right font-button text-xs font-semibold text-[#D1D1D680]">{infotext}</a>
+              <Link
+                href={{
+                  pathname: linkHref,
+                }}
+              >
+                <a className="w-36 text-right font-button text-xs font-semibold text-[#D1D1D680]">
+                  {link}
+                </a>
               </Link>
               <Image src={Arrow} width="13px" alt="" />
             </div>
