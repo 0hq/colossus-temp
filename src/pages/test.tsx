@@ -5,7 +5,18 @@ import Link from "next/link";
 import Star from "../../public/icons/Star.svg";
 import Header from "src/components/public-header";
 import Mission from "../../public/other/Icon.png";
-import { Main, Container, ScrollableWrapper, BlockContent, BlockWrapper, BuilderStory, LargeBlockContent, Hrline } from "../components/basics";
+import {
+  Main,
+  Container,
+  ScrollableWrapper,
+  BlockContent,
+  BlockWrapper,
+  BuilderStory,
+  LargeBlockContent,
+  Hrline,
+  Box,
+  Organization,
+} from "../components/basics";
 import { signatures } from "../configs/signatures";
 import classNames from "classnames";
 
@@ -38,7 +49,7 @@ const Test: NextPage = () => {
         </div>
         <div>
           <h1 className="text-xl">About me</h1>
-          <p className="mt-1 text-sm">
+          <p className="mt-1 text-[14px]">
             How to properly measure a (blockchain) system is one of the least talked about but most significant steps in its design and evaluation. There are
             numerous consensus protocols and variations with various performance and scalability tradeoffs. But as of yet, there is still no universally
             agreed-upon, reliable method that enables apples-to-apples comparisons.
@@ -47,47 +58,45 @@ const Test: NextPage = () => {
         <Hrline />
       </div>
 
-      <div className="flex items-center rounded-lg bg-[#00001c] p-3 shadow-custom">
-        <Image
-          src="https://pbs.twimg.com/profile_images/1330934712165167104/CEJ0NPF0_400x400.jpg"
-          alt="The human colossus logo"
-          width={50}
-          height={50}
-          className="rounded-lg"
+      <Box className="px-4 py-3.5">
+        <BuilderStory
+          title="How I built Discord analytics for 3m+ community members."
+          image="https://pbs.twimg.com/profile_images/1330934712165167104/CEJ0NPF0_400x400.jpg"
+          description="build an analytics service"
+          name="Will DePue"
+          link=""
         />
-        <div className="ml-2 flex flex-col justify-between">
-          <h1 className="z-10 w-full bg-[#00001c] pt-1 font-semibold">Building a worldwide education platform for the self-motivated.</h1>
-          <p className="font-mono text-xs text-muted">
-            learn how to build cool shit with <span className="text-white">Will DePue</span>
-          </p>
-        </div>
-      </div>
-      <div className="items-center rounded-lg bg-[#00001c] p-3 shadow-custom">
-        <h1 className="font-bold">/ Projects</h1>
-        <div className="flex">
-          <div>
-            <Image
-              src="https://pbs.twimg.com/profile_images/1330934712165167104/CEJ0NPF0_400x400.jpg"
-              alt="The human colossus logo"
-              width={50}
-              height={50}
-              layout="fixed"
-              className="m-4 rounded-lg"
-            />
-          </div>
-          <div className="ml-2 flex w-full flex-col">
-            <h1 className="z-10 w-96 overflow-hidden text-clip whitespace-nowrap bg-[#00001c] pt-1 font-semibold">
-              Building a worldwide education platform for the self-motivated.
-            </h1>
-            <p className="font-mono text-xs text-muted">
-              by <span className="text-white">Will DePue</span>
-            </p>
-          </div>
-          <div className="flex h-12 w-16 items-center justify-center rounded border border-[#5F4BDD] font-mono text-[#5F4BDD]">
-            <h1 className="text-center text-xs">100 pts</h1>
-          </div>
-        </div>
-      </div>
+      </Box>
+
+      <Container title="/ Organizations">
+        <ScrollableWrapper>
+          <Organization
+            title="A global education platform for the self-motivated."
+            image="https://pbs.twimg.com/profile_images/1555419633460473856/tabdTAGz_400x400.jpg"
+            location="🌍"
+            time="June 2022"
+            size="50+"
+            name="Colossus"
+            link=""
+            category="Education"
+          />
+        </ScrollableWrapper>
+      </Container>
+
+      <Container title="/ Projects">
+        <ScrollableWrapper>
+          <Organization
+            title="A global education platform for the self-motivated."
+            image="https://pbs.twimg.com/profile_images/1555419633460473856/tabdTAGz_400x400.jpg"
+            location="🌍"
+            time="June 2022"
+            size="50+"
+            name="Colossus"
+            link=""
+            category="Education"
+          />
+        </ScrollableWrapper>
+      </Container>
     </Main>
   );
 };

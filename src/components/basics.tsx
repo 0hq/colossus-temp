@@ -49,21 +49,27 @@ export const Hrline = () => {
 
 export function Container({ children, title, infotext }: { title: string; infotext?: string; children: React.ReactNode }) {
   return (
-    <div className=" rounded-lg bg-[#00001c] px-4 pb-4 pt-1.5 shadow-custom">
-      <div className="mb-[10px] flex items-center">
-        <h1 className="z-10 w-full bg-[#00001c] pt-1 font-semibold">{title}</h1>
-        {infotext && (
-          <div className="flex gap-x-1">
-            <Link href="/sign-in">
-              <a className="w-36 text-right font-button text-xs font-semibold text-[#D1D1D680]">{infotext}</a>
-            </Link>
-            <Image src={Arrow} width="13px" alt="" />
-          </div>
-        )}
+    <Box>
+      <div className="px-4 pb-4 pt-1.5">
+        <div className="mb-[10px] flex items-center">
+          <h1 className="z-10 w-full bg-[#00001c] pt-1 font-semibold">{title}</h1>
+          {infotext && (
+            <div className="flex gap-x-1">
+              <Link href="/sign-in">
+                <a className="w-36 text-right font-button text-xs font-semibold text-[#D1D1D680]">{infotext}</a>
+              </Link>
+              <Image src={Arrow} width="13px" alt="" />
+            </div>
+          )}
+        </div>
+        {children}
       </div>
-      {children}
-    </div>
+    </Box>
   );
+}
+
+export function Box({ className = "", children }: { className?: string; children: React.ReactNode }) {
+  return <div className={"rounded-lg bg-[#00001c] shadow-custom " + className}>{children}</div>;
 }
 
 export function TextWrapper({ children }: { children: React.ReactNode }) {
@@ -140,5 +146,58 @@ export function BuilderStory({ image, title, description, name, link }: { image:
         </BlockContent>
       </BlockWrapper>
     </a>
+  );
+}
+
+export function Organization({
+  image,
+  title,
+  size,
+  name,
+  location,
+  time,
+  link,
+  category,
+}: {
+  image: any;
+  title: string;
+  size: string;
+  name: string;
+  location: string;
+  time: string;
+  category: string;
+  link?: string;
+}) {
+  return (
+    <a href={link}>
+      <BlockWrapper>
+        <BlockContent image={image} title={title}>
+          <p className="text-[#747485]">by</p>
+          <p>{name}</p>
+          <p className="text-[#747485]">/ team of</p>
+          <p>{size}</p>
+          <p className="text-[#747485]">from</p>
+          <p>{location}</p>
+          <p className="text-[#747485]">/ started</p>
+          <p>{time}</p>
+          {/* <p className="text-[#747485]">/</p> */}
+          {/* <div className="rounded-[4px] bg-[#17172B] py-[2px] px-[5px]  text-[#BD68FF]">{category}</div> */}
+        </BlockContent>
+        <UpvoteButton color="red" />
+      </BlockWrapper>
+    </a>
+  );
+}
+
+import RedUpvote from "../../public/icons/RedUpvote.svg";
+
+export function UpvoteButton({ color }: { color: string }) {
+  const textColor = color === "red" ? "text-[#FF9F81]" : "text-[#AFA5EE]";
+  const highlightColor = color === "red" ? "border-[#FF4004]" : "border-[#5F4BDD]";
+  return (
+    <div className={"flex h-[40px] w-[54px] flex-col justify-between rounded border-[0.5px] pt-[5px] pb-[4px] font-mono " + textColor + " " + highlightColor}>
+      <Image src={RedUpvote} height="12px" alt="" className="" />
+      <h1 className="text-center text-xs tracking-tight	">10 pts</h1>
+    </div>
   );
 }
