@@ -1,14 +1,23 @@
 import React from "react";
 import LogoGroup from "../../public/other/LogoGroup.svg";
 import Image from "next/image";
+import Link from "next/link";
 
-export const PublicHeader: React.FC = () => {
+function Header({ link, showbackground = true, button }: { link: string; showbackground?: boolean; button: string }): React.ReactElement {
   return (
     <>
-      <div className="mx-auto flex max-w-custom justify-between py-4">
-        <Image src={LogoGroup} alt="The human colossus logo" />
-        <a className="font-button text-sm font-semibold">Need help?</a>
+      <div className=" flex items-center justify-between">
+        <Link href="/">
+          <Image src={LogoGroup} className="cursor-pointer" height={28} width={180} alt="The human colossus logo" />
+        </Link>
+        <a href={link}>
+          <div className="rounded-md px-3 py-1 font-button text-sm font-semibold" style={{ backgroundColor: showbackground ? "#191933" : "transparent" }}>
+            {button}
+          </div>
+        </a>
       </div>
     </>
   );
-};
+}
+
+export default Header;

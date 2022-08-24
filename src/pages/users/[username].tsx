@@ -39,12 +39,9 @@ const Profile: NextPage<{ hello: string }> = ({ hello }) => {
           <div>
             <h1 className="text-xl">About me</h1>
             <p className="font-light">
-              How to properly measure a (blockchain) system is one of the least
-              talked about but most significant steps in its design and
-              evaluation. There are numerous consensus protocols and variations
-              with various performance and scalability tradeoffs. But as of yet,
-              there is still no universally agreed-upon, reliable method that
-              enables apples-to-apples comparisons.
+              How to properly measure a (blockchain) system is one of the least talked about but most significant steps in its design and evaluation. There are
+              numerous consensus protocols and variations with various performance and scalability tradeoffs. But as of yet, there is still no universally
+              agreed-upon, reliable method that enables apples-to-apples comparisons.
             </p>
           </div>
           <div className="my-5 flex items-center rounded-lg bg-[#00001c] p-3 shadow-custom">
@@ -56,12 +53,9 @@ const Profile: NextPage<{ hello: string }> = ({ hello }) => {
               className="rounded-lg"
             />
             <div className="ml-2 flex flex-col justify-between">
-              <h1 className="z-10 w-full bg-[#00001c] pt-1 font-semibold">
-                Building a worldwide education platform for the self-motivated.
-              </h1>
+              <h1 className="z-10 w-full bg-[#00001c] pt-1 font-semibold">Building a worldwide education platform for the self-motivated.</h1>
               <p className="font-mono text-xs text-muted">
-                learn how to build cool shit with{" "}
-                <span className="text-white">{user.data?.name}</span>
+                learn how to build cool shit with <span className="text-white">{user.data?.name}</span>
               </p>
             </div>
           </div>
@@ -80,8 +74,7 @@ const Profile: NextPage<{ hello: string }> = ({ hello }) => {
               </div>
               <div className="ml-2 flex w-full flex-col">
                 <h1 className="z-10 w-96 overflow-hidden text-clip whitespace-nowrap bg-[#00001c] pt-1 font-semibold">
-                  Building a worldwide education platform for the
-                  self-motivated.
+                  Building a worldwide education platform for the self-motivated.
                 </h1>
                 <p className="font-mono text-xs text-muted">
                   by <span className="text-white">{user.data?.name}</span>
