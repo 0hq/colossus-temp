@@ -1,24 +1,16 @@
 import type { NextPage } from "next";
-import LogoGroup from "../../public/other/LogoGroup.svg";
 import Image from "next/image";
-import Link from "next/link";
 import Star from "../../public/icons/Star.svg";
-import Mission from "../../public/other/Icon.png";
 import {
   Main,
   Container,
   ScrollableWrapper,
-  BlockContent,
-  BlockWrapper,
   BuilderStory,
-  LargeBlockContent,
   Hrline,
   Box,
   Organization,
   Header,
 } from "../components/basics";
-import { signatures } from "../configs/signatures";
-import classNames from "classnames";
 
 const Test: NextPage = () => {
   return (
@@ -37,7 +29,13 @@ const Test: NextPage = () => {
           <h1 className="text-4xl font-medium">Will DePue</h1>
         </div>
         <div className="mt-1 flex gap-2.5 font-mono text-sm text-[#CCCCD2]">
-          <Image src={Star} alt="" width={15} height={15} style={{ marginTop: "-1px" }}></Image>
+          <Image
+            src={Star}
+            alt=""
+            width={15}
+            height={15}
+            style={{ marginTop: "-1px" }}
+          ></Image>
           <h1 className="text-[#FFE604]">Founding Member</h1>
           <h1 className="text-muted">/</h1>
           <h1>19</h1>
@@ -50,15 +48,18 @@ const Test: NextPage = () => {
         <div>
           <h1 className="text-xl">About me</h1>
           <p className="mt-1 text-[14px]">
-            How to properly measure a (blockchain) system is one of the least talked about but most significant steps in its design and evaluation. There are
-            numerous consensus protocols and variations with various performance and scalability tradeoffs. But as of yet, there is still no universally
-            agreed-upon, reliable method that enables apples-to-apples comparisons.
+            How to properly measure a (blockchain) system is one of the least
+            talked about but most significant steps in its design and
+            evaluation. There are numerous consensus protocols and variations
+            with various performance and scalability tradeoffs. But as of yet,
+            there is still no universally agreed-upon, reliable method that
+            enables apples-to-apples comparisons.
           </p>
         </div>
         <Hrline />
       </div>
 
-      <Box className="px-4 py-3.5">
+      <Box styles="px-4 py-3.5">
         <BuilderStory
           title="How I built Discord analytics for 3m+ community members."
           image="https://pbs.twimg.com/profile_images/1330934712165167104/CEJ0NPF0_400x400.jpg"

@@ -14,7 +14,7 @@ const SignIn: NextPageWithAuth = () => {
   const router = useRouter();
 
   if (session?.user) {
-    router.push("/memo");
+    router.push("/");
     return null;
   }
 
@@ -22,7 +22,7 @@ const SignIn: NextPageWithAuth = () => {
 
   return (
     <Main>
-      <Header link="" button="Join The Colossus" />
+      <Header value="Need help?" link="https://twitter.com/colossusfyi" />
       <Container title="/ Login & Sign Up">
         <div className="flex gap-3 ">
           <input
