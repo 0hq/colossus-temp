@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import Mission from "../../public/other/Icon.png";
-import Header from "src/components/public-header";
 import {
   Main,
   Container,
@@ -10,6 +9,7 @@ import {
   BlockWrapper,
   BuilderStory,
   LargeBlockContent,
+  Header,
 } from "../components/basics";
 import { signatures } from "../configs/signatures";
 import classNames from "classnames";

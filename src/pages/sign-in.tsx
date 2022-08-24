@@ -1,12 +1,8 @@
-import LogoGroup from "../../public/other/LogoGroup.svg";
-import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
 import { NextPageWithAuth } from "./_app";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import { Main, Container } from "../components/basics";
-import Header from "src/components/public-header";
+import { Main, Container, Header } from "../components/basics";
 
 const SignIn: NextPageWithAuth = () => {
   const [email, setEmail] = useState("");

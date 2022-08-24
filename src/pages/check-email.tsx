@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
-import { Main, Container, TextWrapper } from "../components/basics";
-import Header from "src/components/public-header";
+import { Main, Container, TextWrapper, Header } from "../components/basics";
 
 const CheckEmail: NextPage = () => {
   return (
