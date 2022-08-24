@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import {
@@ -18,12 +19,21 @@ const Profile: NextPage = () => {
   const router = useRouter();
   const { username } = router.query;
   const userName = username as string;
+  const { data: session, status } = useSession();
 
   const user = trpc.proxy.user.user.useQuery({ username: userName });
 
+  const authHeader = () => {
+    if (session?.user?.email === user.data?.email) {
+      return <Header value="Edit Profile" link="/profile" showBackground />;
+    }
+    if (status === "loading" || user.isLoading) return;
+    return <Header value="Join the Colossus" link="/" showBackground />;
+  };
+
   return (
     <Main>
-      <Header value="Join the Colossus" link="/" showBackground />
+      {authHeader()}
       <div className="-mt-4 flex flex-col gap-y-2">
         <Hrline />
         <div className=" flex items-center gap-4">
@@ -36,25 +46,34 @@ const Profile: NextPage = () => {
           />
           <h1 className="text-3xl font-medium">{user.data?.name}</h1>
         </div>
-        <div className="mt-1 flex gap-2.5 font-mono text-sm text-[#CCCCD2]">
-          <Image
-            src={Star}
-            alt=""
-            width={15}
-            height={15}
-            className="mt-[-1px]"
-          ></Image>
+        <div className="mt-1 flex flex-wrap gap-2.5 font-mono text-[0.75rem] text-[#CCCCD2]">
+          <div className="flex gap-2.5">
+            <Image
+              src={Star}
+              alt=""
+              width={15}
+              height={15}
+              className="mt-[-1px]"
+            />
+          </div>
           <h1 className="text-[#FFE604]">Founding Member</h1>
-          <h1 className="text-muted">/</h1>
-          <h1>19</h1>
-          <h1 className="text-muted">from</h1>
-          <h1>Denver 🇺🇸</h1>
-          <h1 className="text-muted">/</h1>
-          <h1 className="text-muted">in</h1>
-          <h1>Software Engineering</h1>
+          <div className="flex gap-2.5">
+            <h1 className="text-muted">/</h1>
+            <h1>19</h1>
+          </div>
+          <div className="flex gap-2.5">
+            <h1 className="text-muted">from</h1>
+            <h1>Denver 🇺🇸</h1>
+          </div>
+          <div className="flex gap-2.5">
+            <h1 className="text-muted">/</h1>
+            <h1 className="text-muted">in</h1>
+            <h1>Software Engineering</h1>
+          </div>
         </div>
+        <Hrline />
         <div>
-          <h1 className="text-xl">About me</h1>
+          <h1 className="text-2xl">About me</h1>
           <p className="mt-1 text-[14px]">
             How to properly measure a (blockchain) system is one of the least
             talked about but most significant steps in its design and
