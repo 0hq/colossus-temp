@@ -14,7 +14,7 @@ export const MarqueeLayout: React.FC<Props> = ({ children }) => {
             .fill(0)
             .map((_, i) => (
               <p className="m-1 mr-12 text-white" key={i}>
-                ANNOUNCEMENT SOON
+                PLATFORM HAS LAUNCHED
               </p>
             ))}
       </Marquee>
@@ -25,7 +25,7 @@ export const MarqueeLayout: React.FC<Props> = ({ children }) => {
             .fill(0)
             .map((_, i) => (
               <p className="m-1 mr-12 text-white" key={i}>
-                ANNOUNCEMENT SOON
+                PLATFORM HAS LAUNCHED
               </p>
             ))}
       </Marquee>

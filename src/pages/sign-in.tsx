@@ -4,6 +4,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
 import { NextPageWithAuth } from "./_app";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const SignIn: NextPageWithAuth = () => {
   const [email, setEmail] = useState("");
@@ -21,14 +22,14 @@ const SignIn: NextPageWithAuth = () => {
     <main>
       <div className="p-4">
         <div className="mx-auto flex max-w-custom justify-between">
-          <Image src={LogoGroup} alt="The human colossus logo" />
+          <Link href="/">
+            <Image src={LogoGroup} className="cursor-pointer" width="180px" alt="The human colossus logo" />
+          </Link>
           <a className="font-button text-sm font-semibold">Need help?</a>
         </div>
         <div className="mx-auto flex max-w-custom flex-col">
           <div className="my-5 rounded-lg bg-[#00001c] px-4 pb-4 pt-1.5 shadow-custom">
-            <h1 className="z-10 w-full bg-[#00001c] pt-1 font-semibold">
-              / Login & Sign Up
-            </h1>
+            <h1 className="z-10 w-full bg-[#00001c] pt-1 font-semibold">/ Login & Sign Up</h1>
             <div className="flex gap-3 pt-4">
               <input
                 className="h-9 w-full rounded bg-[#4e4e4e4d] px-2 font-mono text-xs font-normal"

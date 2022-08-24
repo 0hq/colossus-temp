@@ -12,21 +12,25 @@ const Index: NextPage = () => {
   return (
     <main>
       <div className="mx-auto mt-4 flex max-w-custom flex-col gap-y-5">
-        <div className="flex justify-between">
-          <Image src={LogoGroup} alt="The human colossus logo" />
-          <a className="font-button text-sm font-semibold">Need help?</a>
-        </div>
+        <Header>
+          <HeaderButton link="">Join the Colossus</HeaderButton>
+        </Header>
+
         <div className="flex flex-col">
           <Container title="/ Our Mission">
             <ScrollableWrapper>
-              <BlockWrapper>
-                <BlockContent image={Mission} title="The Human Colossus: Founding Memo">
-                  <p className="text-[#747485]">via</p>
-                  <p>colossus.fyi</p>
-                  <p className="text-[#747485]">/</p>
-                  <p className="text-[#747485]">Expose ambition. Recruiting young builders...</p>
-                </BlockContent>
-              </BlockWrapper>
+              <Link href="/memo">
+                <a>
+                  <BlockWrapper>
+                    <BlockContent image={Mission} title="The Human Colossus: Founding Memo">
+                      <p className="text-[#747485]">via</p>
+                      <p>colossus.fyi</p>
+                      <p className="text-[#747485]">/</p>
+                      <p className="text-[#747485]">Expose ambition. Recruiting young builders...</p>
+                    </BlockContent>
+                  </BlockWrapper>
+                </a>
+              </Link>
             </ScrollableWrapper>
           </Container>
           <Container title="/ Builder Stories">
@@ -37,18 +41,21 @@ const Index: NextPage = () => {
                   image={signatures[4]?.image}
                   description="build an analytics service"
                   name="Will DePue"
+                  link=""
                 />
                 <BuilderStory
                   title="How I built a DAO that raised $42m to buy the constitution."
                   image={signatures[1]?.image}
                   description="steal the constitution"
                   name="Miguel Piedrafita"
+                  link=""
                 />
                 <BuilderStory
                   title="How I built a platform to help Ukrainian refugees find homes."
                   image={signatures[2]?.image}
                   description="do online activism"
                   name="Avi Schiffman"
+                  link=""
                 />
               </div>
             </ScrollableWrapper>
@@ -58,29 +65,60 @@ const Index: NextPage = () => {
             <ScrollableWrapper>
               <div className="flex flex-col gap-3.5">
                 {signatures.map((signature, i) => (
-                  <LargeBlockContent key={i} image={signature.image} title={signature.name}>
-                    <p className="text-[#747485]">in</p>
-                    <p
-                      className={classNames({
-                        "text-[#e1b13e]": signature.name === "Rhodos",
-                      })}
-                    >
-                      {signature.subject}
-                    </p>
-                    <p className="text-[#747485]">/</p>
-                    <p>{signature.age}</p>
-                    <p className="text-[#747485]">from</p>
-                    <p>{signature.location}</p>
-                  </LargeBlockContent>
+                  <a key={i} href="">
+                    <LargeBlockContent image={signature.image} title={signature.name}>
+                      <p className="text-[#747485]">in</p>
+                      <p
+                        className={classNames({
+                          "text-[#e1b13e]": signature.name === "Rhodos",
+                        })}
+                      >
+                        {signature.subject}
+                      </p>
+                      <p className="text-[#747485]">/</p>
+                      <p>{signature.age}</p>
+                      <p className="text-[#747485]">from</p>
+                      <p>{signature.location}</p>
+                    </LargeBlockContent>
+                  </a>
                 ))}
               </div>
             </ScrollableWrapper>
+          </div>
+        </div>
+        <div className=" h-14">
+          <div className="mt-2 flex justify-between px-4 font-mono text-[13px] leading-[16.5px] text-[#45455B]">
+            <Link href="memo">Read our mission</Link>
+            <a href="https://twitter.com/colossusfyi">Get updates</a>
+            <a href="mailto:team@colossus.fyi">Contact us</a>
+            <a href="">Privacy & Terms</a>
           </div>
         </div>
       </div>
     </main>
   );
 };
+
+function Header({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-between">
+      <Link href="/">
+        <Image src={LogoGroup} className="cursor-pointer" height={28} width={180} alt="The human colossus logo" />
+      </Link>
+      {children}
+    </div>
+  );
+}
+
+function HeaderButton({ link, showbackground = true, children }: { link: string; showbackground?: boolean; children: string }) {
+  return (
+    <a href={link}>
+      <div className="rounded-md px-3 py-1 font-button text-sm font-semibold" style={{ backgroundColor: showbackground ? "#191933" : "transparent" }}>
+        {children}
+      </div>
+    </a>
+  );
+}
 
 function Container({ children, title, infotext }: { title: string; infotext?: string; children: React.ReactNode }) {
   return (
@@ -163,16 +201,18 @@ function BlockWrapper({ key, children }: { key?: number; children: React.ReactNo
   );
 }
 
-function BuilderStory({ image, title, description, name }: { image: any; title: string; description: string; name: string }) {
+function BuilderStory({ image, title, description, name, link }: { image: any; title: string; description: string; name: string; link?: string }) {
   return (
-    <BlockWrapper>
-      <BlockContent image={image} title={title}>
-        <p className="text-[#747485]">learn how to</p>
-        <p>{description}</p>
-        <p className="text-[#747485]">with</p>
-        <p>{name}</p>
-      </BlockContent>
-    </BlockWrapper>
+    <a href={link}>
+      <BlockWrapper>
+        <BlockContent image={image} title={title}>
+          <p className="text-[#747485]">learn how to</p>
+          <p>{description}</p>
+          <p className="text-[#747485]">with</p>
+          <p>{name}</p>
+        </BlockContent>
+      </BlockWrapper>
+    </a>
   );
 }
 
