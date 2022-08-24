@@ -129,9 +129,9 @@ export const Box: React.FC<{ children: JSX.Element; styles?: string }> = ({
   );
 };
 
-export const TextWrapper: React.FC<{ children: JSX.Element }> = ({
-  children,
-}) => {
+export const TextWrapper: React.FC<{
+  children: JSX.Element | JSX.Element[];
+}> = ({ children }) => {
   return (
     <div className="rounded border border-[#30303A] p-3 font-mono text-xs text-[#B0B0BE]">
       {children}
