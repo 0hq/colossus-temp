@@ -63,7 +63,7 @@ export const Header: React.FC<{
   );
 };
 
-export function Footer() {
+export const Footer: React.FC = () => {
   return (
     <div className="mx-auto mt-8 h-12 max-w-[600px]">
       <div className=" flex justify-between px-2 font-mono text-[13px] leading-[16.5px] text-[#45455B]">
