@@ -7,7 +7,7 @@ import Community from "../../public/other/Community.png";
 import { signatures } from "../configs/signatures";
 import classNames from "classnames";
 import { usePlausible } from "next-plausible";
-import { MarqueeLayout } from "src/components/marquee-layout";
+import { MarqueeLayout } from "src/components/basics";
 
 const Home: NextPage = () => {
   // Styles places here for easy editing of all elements with className = <nameOfClass>

@@ -6,6 +6,7 @@ import RedUpvote from "../../public/icons/RedUpvote.svg";
 import React from "react";
 import classNames from "classnames";
 import { Signatures } from "src/configs/signatures";
+import Marquee from "react-fast-marquee";
 
 export function Main({ children }: { children: React.ReactNode }) {
   return (
@@ -313,5 +314,53 @@ export const UpvoteButton: React.FC<{ color: string }> = ({ color }) => {
       <Image src={RedUpvote} height="12px" alt="" className="" />
       <h1 className="text-center text-xs tracking-tight	">10 pts</h1>
     </div>
+  );
+};
+
+export const MarqueeLayout: React.FC<{ children: JSX.Element }> = ({
+  children,
+}) => {
+  return (
+    <>
+      <Marquee
+        style={{
+          backgroundColor: "#30267C",
+          fontFamily: "mono",
+          fontSize: "16px",
+        }}
+        gradient={true}
+        gradientColor={[0, 0, 28]}
+        speed={10}
+      >
+        {true &&
+          Array(10)
+            .fill(0)
+            .map((_, i) => (
+              <p className="m-1 mr-12 text-white" key={i}>
+                PLATFORM HAS LAUNCHED
+              </p>
+            ))}
+      </Marquee>
+      {children}
+      <Marquee
+        style={{
+          backgroundColor: "#5f4bdd",
+          fontFamily: "mono",
+          fontSize: "16px",
+        }}
+        gradient={true}
+        gradientColor={[0, 0, 28]}
+        speed={10}
+      >
+        {true &&
+          Array(10)
+            .fill(0)
+            .map((_, i) => (
+              <p className="m-1 mr-12 text-white" key={i}>
+                PLATFORM HAS LAUNCHED
+              </p>
+            ))}
+      </Marquee>
+    </>
   );
 };
