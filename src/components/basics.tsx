@@ -40,7 +40,7 @@ export const Header: React.FC<{
   };
 
   return (
-    <div className="my-5 flex justify-between pl-1 pt-1">
+    <div className="flex justify-between pl-1 pt-1">
       <Link href="/">
         <Image
           src={LogoGroup}
@@ -160,6 +160,7 @@ export const BlockContent: React.FC<{
           src={image}
           alt="The human colossus logo"
           width={40}
+          x
           height={40}
           className="rounded"
         />
