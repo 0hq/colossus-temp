@@ -3,7 +3,6 @@ import LogoGroup from "../../public/other/LogoGroup.svg";
 import Image from "next/image";
 import Link from "next/link";
 import Star from "../../public/icons/Star.svg";
-import Header from "src/components/public-header";
 import Mission from "../../public/other/Icon.png";
 import {
   Main,
@@ -16,6 +15,7 @@ import {
   Hrline,
   Box,
   Organization,
+  Header,
 } from "../components/basics";
 import { signatures } from "../configs/signatures";
 import classNames from "classnames";
@@ -23,7 +23,7 @@ import classNames from "classnames";
 const Test: NextPage = () => {
   return (
     <Main>
-      <Header link="" button="Join The Colossus" />
+      <Header value="Join the Colossus" link="/" showBackground />
       <div className="-mt-4 flex flex-col gap-y-2">
         <Hrline />
         <div className=" flex items-center gap-4">

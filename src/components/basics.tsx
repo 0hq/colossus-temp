@@ -2,33 +2,103 @@ import Image from "next/image";
 import Link from "next/link";
 import Arrow from "../../public/other/arrow.svg";
 import LogoGroup from "../../public/other/LogoGroup.svg";
+import RedUpvote from "../../public/icons/RedUpvote.svg";
+import React, { Children } from "react";
+import classNames from "classnames";
 
 export function Main({ children }: { children: React.ReactNode }) {
   return (
     <main>
-      <div className="mx-auto mt-4 flex min-h-[90vh] max-w-custom flex-col gap-y-6">{children}</div>
+      <div className="mx-auto mt-4 flex min-h-[90vh] max-w-custom flex-col gap-y-6">
+        {children}
+      </div>
       <Footer />
     </main>
   );
 }
 
-export function Header({ link, showbackground = true, button }: { link: string; showbackground?: boolean; button: string }): React.ReactElement {
+/**
+ *
+ * @param {string} value - The value that will be displayed in the header.
+ * @param {Function} button - This controls the onClick event. There can be a button and a link passed in at the same time.
+ * @param {string} link - This controls the href of the link. There can be a button and a link passed in at the same time.
+ * @param {boolean} showBackground - This determines whether or not the button will look like a link or a button.
+ * @returns React.FC
+ */
+
+export const Header: React.FC<{
+  value: string;
+  button?: () => void;
+  link?: string;
+  showBackground?: boolean; // False styles this as a link, true styles it as a button
+}> = ({ value, button, link, showBackground }) => {
+  const props = {
+    ...(link && { href: link }),
+    ...(button && { onClick: button }),
+  };
+
   return (
-    <>
-      <div className="flex justify-between pl-1 pt-1">
-        <Link href="/">
-          <Image src={LogoGroup} className="cursor-pointer" height={30} width={180} alt="The human colossus logo" />
-        </Link>
-        <Hrline />
-        <a href={link}>
-          <div className="rounded-md px-3 pt-1 pb-1 font-button text-sm font-semibold" style={{ backgroundColor: showbackground ? "#191933" : "transparent" }}>
-            {button}
-          </div>
-        </a>
-      </div>
-    </>
+    <div className="my-5 flex justify-between pl-1 pt-1">
+      <Link href="/">
+        <Image
+          src={LogoGroup}
+          className="cursor-pointer"
+          height={30}
+          width={180}
+          alt="The human colossus logo"
+        />
+      </Link>
+      <Hrline />
+      <a {...props}>
+        <div
+          className={classNames(
+            "rounded-md px-3 pt-1 pb-1 font-button text-sm font-semibold",
+            { "bg-[#191933]": showBackground }
+          )}
+        >
+          {value}
+        </div>
+      </a>
+    </div>
   );
-}
+};
+
+// export function Header({
+//   link,
+//   showbackground = true,
+//   button,
+// }: {
+//   link: string;
+//   showbackground?: boolean;
+//   button: string;
+// }): React.ReactElement {
+//   return (
+//     <>
+//       <div className="my-5 flex justify-between pl-1 pt-1">
+//         <Link href="/">
+//           <Image
+//             src={LogoGroup}
+//             className="cursor-pointer"
+//             height={30}
+//             width={180}
+//             alt="The human colossus logo"
+//           />
+//         </Link>
+//         <Hrline />
+//         <a href={link}>
+//           <div
+//             className="rounded-md px-3 pt-1 pb-1 font-button text-sm font-semibold"
+//             style={{
+//               backgroundColor: showbackground ? "#191933" : "transparent",
+//             }}
+//           >
+//             {button}
+//           </div>
+//         </a>
+//       </div>
+//     </>
+//   );
+// }
 
 export function Footer() {
   return (
