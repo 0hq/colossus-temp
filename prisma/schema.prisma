@@ -48,6 +48,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   username      String?   @unique
+  enabled       Boolean   @default(false)
+  level         Int       @default(1)
 }
 
 model VerificationToken {
