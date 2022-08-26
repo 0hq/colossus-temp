@@ -5,7 +5,7 @@ import MaxSignature from "../../public/signatures/MaxSignature.png";
 import OwenSignature from "../../public/signatures/OwenSignature.png";
 import JuanDavidSignature from "../../public/signatures/JuanDavidSignature.png";
 
-import ChristianPicture from "../../public/profile-pictures/Christian.jpg";
+import ChristianPicture from "../../public/profile-pictures/glassy.jpg";
 import RhodosPicture from "../../public/profile-pictures/RhodosPFP.png";
 import MiguelPicture from "../../public/profile-pictures/Miguel.jpg";
 import AviPicture from "../../public/profile-pictures/Avi.jpg";

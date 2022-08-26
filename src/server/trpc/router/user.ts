@@ -10,6 +10,19 @@ export const userRouter = t.router({
         where: {
           username: input.username!,
         },
+        select: {
+          profileImg: true,
+          name: true,
+          username: true,
+          level: true,
+          age: true,
+          from: true,
+          category: true,
+          aboutMe: true,
+          substack: true,
+          twitter: true,
+          personalSite: true,
+        },
       });
     }),
 });

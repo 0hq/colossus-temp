@@ -50,6 +50,16 @@ model User {
   username      String?   @unique
   enabled       Boolean   @default(false)
   level         Int       @default(1)
+  age           Int       @default(0)
+  from          String    @default("Nowhere 🇦🇶")
+  profileImg    String?
+  category      String    @default("??")
+  substack      String?
+  twitter       String?
+  personalSite  String?
+  aboutMe       String?   @db.LongText()
+
+  // featuredPost Profile
 }
 
 model VerificationToken {

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import {
   Box,
-  BuilderStory,
   Container,
   Header,
   Hrline,
@@ -14,12 +13,12 @@ import {
   ScrollableWrapper,
 } from "src/components/basics";
 import { trpc } from "src/utils/trpc";
-import Star from "../../public/icons/Star.svg";
+import GoldStar from "../../public/icons/GoldStar.svg";
+import RedStar from "../../public/icons/RedStar.svg";
 import Twitter from "../../public/icons/Twitter.svg";
 import Substack from "../../public/icons/Substack.svg";
-import Message from "../../public/icons/Message.svg";
-import test from "node:test";
-import { useQuery } from "react-query";
+import Site from "../../public/icons/Site.svg";
+import { useProfileImg } from "src/hooks/hooks";
 
 const Profile: NextPage = () => {
   const router = useRouter();
@@ -29,24 +28,47 @@ const Profile: NextPage = () => {
 
   const user = trpc.proxy.user.user.useQuery({ username: userName });
 
-  const query = useQuery(["fetch-iamge", user.data?.username], async () => {
-    const { default: image } = await import(
-      `/public/profile-pictures/${user.data?.username}.jpg`
-    );
-    return image;
-  });
+  const { data: profImg } = useProfileImg(user.data?.username);
 
   const authHeader = () => {
-    if (session?.user?.email === user.data?.email) {
+    if (status === "loading") {
+      return null;
+    }
+    if (session?.user?.name === user.data?.name) {
       return <Header value="Edit Profile" link="/profile" showBackground />;
     }
-    if (status === "loading" || user.isLoading) return;
+
     return <Header value="Join the Colossus" link="/" showBackground />;
   };
 
-  if (!user.data) {
+  if (user.isLoading) {
     return null;
   }
+
+  const star = () => {
+    if (user.data?.level === 999) {
+      return (
+        <Image
+          src={GoldStar}
+          alt=""
+          width={15}
+          height={15}
+          className="mt-[-1px]"
+        />
+      );
+    }
+    return (
+      <Image
+        src={RedStar}
+        alt=""
+        width={15}
+        height={15}
+        className="mt-[-1px]"
+      />
+    );
+  };
+
+  console.log(user.data?.personalSite);
 
   return (
     <Main>
@@ -55,7 +77,7 @@ const Profile: NextPage = () => {
         <Hrline />
         <div className=" flex items-center gap-4">
           <Image
-            src="https://pbs.twimg.com/profile_images/1330934712165167104/CEJ0NPF0_400x400.jpg"
+            src={profImg}
             alt="The human colossus logo"
             width={45}
             height={45}
@@ -64,19 +86,15 @@ const Profile: NextPage = () => {
           <h1 className="text-3xl font-medium">{user.data?.name}</h1>
         </div>
         <div className="mt-1 flex flex-wrap gap-2 font-mono text-[0.80rem] text-[#CCCCD2]">
-          <div className="flex">
-            <Image
-              src={Star}
-              alt=""
-              width={15}
-              height={15}
-              className="mt-[-1px]"
-            />
-          </div>
-          <h1 className="text-[#FFE604]">Founding Member</h1>
+          <div className="flex">{star()}</div>
+          {user.data?.level === 999 ? (
+            <h1 className="text-[#FFE604]">Founding Member</h1>
+          ) : (
+            <h1 className="text-[#FF4004]">Level {user.data?.level}</h1>
+          )}
           <div className="flex gap-2">
             <h1 className="text-muted">/</h1>
-            <h1>19</h1>
+            <h1>{user.data?.age}</h1>
           </div>
           <div className="flex gap-2">
             <h1 className="text-muted">from</h1>
@@ -85,7 +103,7 @@ const Profile: NextPage = () => {
           <div className="flex gap-2">
             <h1 className="text-muted">/</h1>
             <h1 className="text-muted">in</h1>
-            <h1>Software Engineering</h1>
+            <h1>{user.data?.category}</h1>
           </div>
         </div>
         <Hrline />
@@ -94,37 +112,51 @@ const Profile: NextPage = () => {
             <h1 className="text-[22px]">About me</h1>
 
             <div className=" flex justify-between gap-3 px-3">
-              <ImageButton
-                text=""
-                textColor="text-[#DDDDE8]"
-                border="border-[#0077B5]"
-              >
-                <Image src={Twitter} alt="" width="16px" height="16px"></Image>
-              </ImageButton>
-              <ImageButton
-                text=""
-                textColor="text-[#DDDDE8]"
-                border="border-[#FE6719]"
-              >
-                <Image src={Substack} alt="" width="16px" height="16px"></Image>
-              </ImageButton>
-              <ImageButton
-                text=""
-                textColor="text-[#DDDDE8]"
-                border="border-[#5865F1]"
-              >
-                <Image src={Message} alt="" width="16px" height="16px"></Image>
-              </ImageButton>
+              {user.data?.twitter && (
+                <ImageButton
+                  text=""
+                  textColor="text-[#DDDDE8]"
+                  border="border-[#0077B5]"
+                  click={() =>
+                    router.push(`https://twitter.com/${user.data?.twitter}`)
+                  }
+                >
+                  <Image
+                    src={Twitter}
+                    alt=""
+                    width="16px"
+                    height="16px"
+                  ></Image>
+                </ImageButton>
+              )}
+              {user.data?.substack && (
+                <ImageButton
+                  text=""
+                  textColor="text-[#DDDDE8]"
+                  border="border-[#FE6719]"
+                  click={() => router.push(user.data?.substack!)}
+                >
+                  <Image
+                    src={Substack}
+                    alt=""
+                    width="16px"
+                    height="16px"
+                  ></Image>
+                </ImageButton>
+              )}
+              {user.data?.personalSite && (
+                <ImageButton
+                  text=""
+                  textColor="text-[#DDDDE8]"
+                  border="border-[#5865F1]"
+                  click={() => router.push(user.data?.personalSite!)}
+                >
+                  <Image src={Site} alt="" width="16px" height="16px"></Image>
+                </ImageButton>
+              )}
             </div>
           </div>
-          <p className="mt-1.5 text-[15px]">
-            How to properly measure a (blockchain) system is one of the least
-            talked about but most significant steps in its design and
-            evaluation. There are numerous consensus protocols and variations
-            with various performance and scalability tradeoffs. But as of yet,
-            there is still no universally agreed-upon, reliable method that
-            enables apples-to-apples comparisons.
-          </p>
+          <p className="mt-1.5 text-[15px]">{user.data?.aboutMe}</p>
         </div>
         <Hrline />
       </div>
@@ -134,9 +166,9 @@ const Profile: NextPage = () => {
           <a href="">
             <div className="flex h-10 items-center justify-between truncate">
               <div className="flex">
-                {query.data && (
+                {profImg && (
                   <Image
-                    src={query.data}
+                    src={profImg}
                     alt="The human colossus logo"
                     width={40}
                     height={40}
