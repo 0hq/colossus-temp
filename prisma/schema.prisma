@@ -58,8 +58,20 @@ model User {
   twitter       String?
   personalSite  String?
   aboutMe       String?   @db.LongText()
+  posts         Post[]    @relation("posts")
+  featuredPost  Post?     @relation("featured")
+}
 
-  // featuredPost Profile
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  created   DateTime @default(now())
+  heroImage String?
+  content   String   @db.LongText()
+  authorId  String
+  author    User     @relation("posts", fields: [authorId], references: [id])
+  featured  User     @relation("featured", fields: [id], references: [id])
+  // organization
 }
 
 model VerificationToken {

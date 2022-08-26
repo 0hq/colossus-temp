@@ -11,6 +11,7 @@ export const userRouter = t.router({
           username: input.username!,
         },
         select: {
+          featuredPost: true,
           profileImg: true,
           name: true,
           username: true,

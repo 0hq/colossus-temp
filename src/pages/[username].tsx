@@ -163,13 +163,13 @@ const Profile: NextPage = () => {
 
       <Box styles="px-4 py-3.5">
         <div>
-          <a href="">
+          <a href={`/posts/${user.data?.featuredPost?.id}`}>
             <div className="flex h-10 items-center justify-between truncate">
               <div className="flex">
                 {profImg && (
                   <Image
                     src={profImg}
-                    alt="The human colossus logo"
+                    alt="User profile image"
                     width={40}
                     height={40}
                     className="rounded"
@@ -178,7 +178,8 @@ const Profile: NextPage = () => {
                 )}
                 <div className="mx-3 flex flex-col justify-between">
                   <h1 className="text-normal font-semibold leading-5.5 text-[#E9E9EC]">
-                    How I built Discord analytics for 3m+ community members.
+                    {/* How I built Discord analytics for 3m+ community members. */}
+                    {user.data?.featuredPost?.title}
                   </h1>
                   <div className="mt-0 flex w-full gap-2 whitespace-nowrap font-mono text-xs leading-[16.5px] text-[#BBBBC3]">
                     <p className="text-[#747485]">learn how to</p>
