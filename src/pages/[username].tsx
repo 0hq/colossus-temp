@@ -182,9 +182,9 @@ const Profile: NextPage = () => {
                   </h1>
                   <div className="mt-0 flex w-full gap-2 whitespace-nowrap font-mono text-xs leading-[16.5px] text-[#BBBBC3]">
                     <p className="text-[#747485]">learn how to</p>
-                    <p>build an analytics service</p>
+                    <p>{user.data?.featuredPost?.description}</p>
                     <p className="text-[#747485]">with</p>
-                    <p className="">{user.data?.name!} asdasdfsdfa</p>
+                    <p className="">{user.data?.name!}</p>
                   </div>
                 </div>
               </div>
@@ -193,7 +193,7 @@ const Profile: NextPage = () => {
         </div>
       </Box>
 
-      <Container title="/ Organizations">
+      {/* <Container title="/ Organizations">
         <ScrollableWrapper>
           <Organization
             title="A global education platform for the self-motivated."
@@ -221,7 +221,7 @@ const Profile: NextPage = () => {
             category="Education"
           />
         </ScrollableWrapper>
-      </Container>
+      </Container> */}
     </Main>
   );
 };

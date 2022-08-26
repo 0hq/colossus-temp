@@ -71,6 +71,7 @@ model Post {
   authorId  String
   author    User     @relation("posts", fields: [authorId], references: [id])
   featured  User     @relation("featured", fields: [id], references: [id])
+  description String?
   // organization
 }
 
