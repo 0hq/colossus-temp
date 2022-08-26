@@ -1,10 +1,20 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import Star from "../../public/icons/Star.svg";
+import GoldStar from "../../public/icons/GoldStar.svg";
 import Twitter from "../../public/icons/Twitter.svg";
 import Substack from "../../public/icons/Substack.svg";
 import Message from "../../public/icons/Message.svg";
-import { Main, Container, ScrollableWrapper, BuilderStory, Hrline, Box, Organization, Header, ImageButton } from "../components/basics";
+import {
+  Main,
+  Container,
+  ScrollableWrapper,
+  BuilderStory,
+  Hrline,
+  Box,
+  Organization,
+  Header,
+  ImageButton,
+} from "../components/basics";
 
 const Test: NextPage = () => {
   return (
@@ -23,7 +33,13 @@ const Test: NextPage = () => {
           <h1 className="text-4xl font-medium">Will DePue</h1>
         </div>
         <div className="mt-1.5 flex gap-2.5 font-mono text-sm text-[#CCCCD2]">
-          <Image src={Star} alt="" width={15} height={15} style={{ marginTop: "-1px" }}></Image>
+          <Image
+            src={GoldStar}
+            alt=""
+            width={15}
+            height={15}
+            style={{ marginTop: "-1px" }}
+          ></Image>
           <h1 className="text-[#FFE604]">Founding Member</h1>
           <h1 className="text-muted">/</h1>
           <h1>19</h1>
@@ -40,21 +56,36 @@ const Test: NextPage = () => {
             <h1 className="text-[22px]">About me</h1>
 
             <div className=" flex justify-between gap-3 px-3">
-              <ImageButton text="" textColor="text-[#DDDDE8]" border="border-[#0077B5]">
+              <ImageButton
+                text=""
+                textColor="text-[#DDDDE8]"
+                border="border-[#0077B5]"
+              >
                 <Image src={Twitter} alt="" width="16px" height="16px"></Image>
               </ImageButton>
-              <ImageButton text="" textColor="text-[#DDDDE8]" border="border-[#FE6719]">
+              <ImageButton
+                text=""
+                textColor="text-[#DDDDE8]"
+                border="border-[#FE6719]"
+              >
                 <Image src={Substack} alt="" width="16px" height="16px"></Image>
               </ImageButton>
-              <ImageButton text="" textColor="text-[#DDDDE8]" border="border-[#5865F1]">
+              <ImageButton
+                text=""
+                textColor="text-[#DDDDE8]"
+                border="border-[#5865F1]"
+              >
                 <Image src={Message} alt="" width="16px" height="16px"></Image>
               </ImageButton>
             </div>
           </div>
           <p className="mt-1.5 text-[15px]">
-            How to properly measure a (blockchain) system is one of the least talked about but most significant steps in its design and evaluation. There are
-            numerous consensus protocols and variations with various performance and scalability tradeoffs. But as of yet, there is still no universally
-            agreed-upon, reliable method that enables apples-to-apples comparisons.
+            How to properly measure a (blockchain) system is one of the least
+            talked about but most significant steps in its design and
+            evaluation. There are numerous consensus protocols and variations
+            with various performance and scalability tradeoffs. But as of yet,
+            there is still no universally agreed-upon, reliable method that
+            enables apples-to-apples comparisons.
           </p>
         </div>
       </div>
